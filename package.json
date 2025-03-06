@@ -1,0 +1,41 @@
+{
+  "name": "out",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-native-voice/voice": "^3.2.4",
+    "@react-navigation/native": "^7.0.15",
+    "@tensorflow-models/blazeface": "^0.1.0",
+    "@tensorflow/tfjs": "^4.22.0",
+    "axios": "^1.8.1",
+    "dotenv": "^16.4.7",
+    "expo-sensors": "^14.0.2",
+    "expo-speech": "^13.0.1",
+    "face-api.js": "^0.22.2",
+    "next": "15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-native-call-detection": "^1.9.0",
+    "react-native-geolocation-service": "^5.3.1",
+    "react-native-gesture-handler": "^2.24.0",
+    "react-native-reanimated": "^3.17.1",
+    "react-native-sms": "^1.12.0",
+    "react-native-tts": "^4.1.1",
+    "react-webcam": "^7.2.0",
+    "speech-synthesis": "^0.3.2",
+    "tracking": "^1.1.3",
+    "webcam-easy": "^1.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.10"
+  }
+}
