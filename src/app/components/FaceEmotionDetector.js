@@ -5,13 +5,15 @@ import * as faceapi from "face-api.js";
 const FaceEmotionDetector = () => {
   const webcamRef = useRef(null);
   const [expressions, setExpressions] = useState(null);
+  const [modelsLoaded, setModelsLoaded] = useState(false);
 
   useEffect(() => {
     const loadModels = async () => {
-      const MODEL_URL = "/models"; // Updated to use root path
+      const MODEL_URL = "/models"; // Ensure your models are in the public folder
       try {
         await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
         await faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL);
+        setModelsLoaded(true);
         console.log("Models loaded");
       } catch (error) {
         console.error("Error loading models:", error);
@@ -22,6 +24,9 @@ const FaceEmotionDetector = () => {
   }, []);
 
   const handleVideoOnPlay = () => {
+    // Do not run detection until models are loaded
+    if (!modelsLoaded) return;
+
     setInterval(async () => {
       if (webcamRef.current && webcamRef.current.video.readyState === 4) {
         const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 160, scoreThreshold: 0.5 });
@@ -59,7 +64,9 @@ const FaceEmotionDetector = () => {
           </ul>
         </div>
       ) : (
-        <div className="mt-4 text-center text-gray-500">No face detected or no expressions recognized.</div>
+        <div className="mt-4 text-center text-gray-500">
+          {modelsLoaded ? "No face detected or no expressions recognized." : "Loading models..."}
+        </div>
       )}
     </div>
   );
